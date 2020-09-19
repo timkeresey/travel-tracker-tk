@@ -1,4 +1,4 @@
-import moment from 'moment';
+// import moment from 'moment';
 
 class Traveler {
   constructor(traveler) {
@@ -10,8 +10,10 @@ class Traveler {
     this.pendingTrips = [];
   }
 
+  getPastTrips() {
+    
+  }
 }
-
 
 
 export default Traveler;
