@@ -1,3 +1,5 @@
+import moment from 'moment';
+
 class Traveler {
   constructor(traveler) {
     this.id = traveler.id;
