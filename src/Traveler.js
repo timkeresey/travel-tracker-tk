@@ -1,6 +1,11 @@
 import moment from 'moment';
 import tripsData from '../test/travelers-dum.js';
 
+////date math
+// moment('2016-03-12 13:00:00').add(1, 'day').format('LLL')
+////"March 13, 2016 1:00 PM"
+
+
 class Traveler {
   constructor(traveler) {
     this.id = traveler.id;
@@ -17,8 +22,15 @@ class Traveler {
     })
   }
 
+  getPastTrips(tripsData) {
+    let allTrips = this.getTravelerTrips(tripsData);
+    return allTrips.filter(trip => {
+      let durationDate = moment(new Date(trip.date)).add(trip.duration, 'day');
+      return moment(durationDate).isBefore(moment());
+    })
+  }
+
   
 }
-
 
 export default Traveler;
