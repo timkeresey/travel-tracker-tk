@@ -5,16 +5,21 @@ import travelersData from './travelers-dum.js';
 import tripsData from './trips-dum.js';
 import destinationsData from './destinations-dum.js';
 import Traveler from '../src/Traveler.js';
+import Trip from '../src/Trip.js';
 
 let traveler1;
 let allTrips1;
 let pastTrips1;
 let upcomingTrips1;
+let trips;
 
-describe('Traveler', () => {
+describe.only('Traveler', () => {
 
   beforeEach(() => {
     traveler1 = new Traveler(travelersData[1]);
+    trips = tripsData.map(trip => {
+      return new Trip(trip)
+    })
     allTrips1 = [
       {
         id: 89,
@@ -168,8 +173,9 @@ describe('Traveler', () => {
   });
 
   it('should return the total amount a traveler has spent over past year', () => {
-    traveler1.getPastTrips(tripsData);
-    traveler1.totalAmountSpent(tripsData, destinationsData);
-
+    traveler1.getPastTrips(trips);
+    traveler1.getCurrentTrip(trips);
+    let totalSpent = traveler1.totalAmountSpent(destinationsData);
+    expect(totalSpent).to.equal(12835)
   })
 })
