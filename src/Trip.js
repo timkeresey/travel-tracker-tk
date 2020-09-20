@@ -10,6 +10,9 @@ class Trip {
     this.suggestedActivities = [];
   }
 // calculate trip cost
+  getCostPerTrip(destinationsData) {
+
+  }
 
 }
 

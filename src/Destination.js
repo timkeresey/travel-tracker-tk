@@ -5,8 +5,7 @@ class Destination {
     this.flightCostPerDay = flightCostPerDay;
   }
 
-  // calculate lodging cost for a trip
-  // calculate flight cost for a trip
+
 
 }
 
