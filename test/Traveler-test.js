@@ -13,7 +13,7 @@ let pastTrips1;
 let upcomingTrips1;
 let trips;
 
-describe.only('Traveler', () => {
+describe('Traveler', () => {
 
   beforeEach(() => {
     traveler1 = new Traveler(travelersData[1]);

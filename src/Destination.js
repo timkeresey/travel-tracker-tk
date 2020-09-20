@@ -1,8 +1,8 @@
 class Destination {
-  constructor(id, lodgingCostPerDay, flightCostPerDay) {
-    this.id = id;
-    this.lodgingCostPerDay = lodgingCostPerDay;
-    this.flightCostPerDay = flightCostPerDay;
+  constructor(destinationsData) {
+    this.id = destinationsData.id;
+    this.estimatedLodgingCostPerDay = destinationsData.estimatedLodgingCostPerDay;
+    this.estimatedFlightCostPerPerson = destinationsData.estimatedFlightCostPerPerson;
   }
 
 
