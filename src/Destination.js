@@ -5,6 +5,8 @@ class Destination {
     this.flightCostPerDay = flightCostPerDay;
   }
 
+
+
 }
 
 
