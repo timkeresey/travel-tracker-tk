@@ -2,7 +2,8 @@ import chai from 'chai';
 const expect = chai.expect;
 
 import travelersData from './travelers-dum.js';
-import Traveler from '../src/traveler.js';
+import tripsData from './trips-dum.js';
+import Traveler from '../src/Traveler.js';
 
 let traveler1;
 
@@ -35,5 +36,11 @@ describe('Traveler', () => {
 
   it('should keep track of pending trips', () => {
     expect(traveler1.pendingTrips).to.deep.equal([]);
+  });
+
+  it('should return all trips of a certain traveler', () => {
+    let allTrips = traveler1.getTravelerTrips(tripsData);
+    console.log(allTrips);
+    expect(allTrips[0].id).to.equal(89);
   });
 })

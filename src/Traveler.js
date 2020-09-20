@@ -1,4 +1,5 @@
-// import moment from 'moment';
+import moment from 'moment';
+import tripsData from '../test/travelers-dum.js';
 
 class Traveler {
   constructor(traveler) {
@@ -10,9 +11,13 @@ class Traveler {
     this.pendingTrips = [];
   }
 
-  getPastTrips() {
-    
+  getTravelerTrips(tripsData) {
+    return tripsData.filter(trip => {
+      return this.id === trip.userID;
+    })
   }
+
+  
 }
 
 
