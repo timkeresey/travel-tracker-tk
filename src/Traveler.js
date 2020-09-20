@@ -1,6 +1,7 @@
 import moment from 'moment';
 import tripsData from '../test/travelers-dum.js';
 import destinationsData from '../test/destinations-dum.js';
+import Trip from './Trip.js';
 
 ////date math
 // moment('2016-03-12 13:00:00').add(1, 'day').format('LLL')
@@ -54,13 +55,13 @@ class Traveler {
   }
 
 
-  totalAmountSpent(tripsData, destinationsData) {
-// need to access past and current trips
-// returning a sum so use reduce.
-// need to add up all lodging and flight costs
-//need to add 10% to sum.
+  totalAmountSpent(destinationsData) {
     let neededTrips = [this.pastTrips, this.currentTrip].flat();
-
+    return neededTrips.reduce((total, trip) => {
+      if(trip.date.includes('2020')) {
+        return total += trip.getCostPerTrip(destinationsData);
+      }
+    }, 0);
   }
 
 }

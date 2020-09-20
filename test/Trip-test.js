@@ -7,7 +7,7 @@ import Trip from '../src/Trip.js';
 
 let trip1;
 
-describe.only('Trip', () => {
+describe('Trip', () => {
   beforeEach(() => {
     trip1 = new Trip(tripsData[0]);
   });
