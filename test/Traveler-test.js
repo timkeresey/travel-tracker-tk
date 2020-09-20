@@ -8,6 +8,7 @@ import Traveler from '../src/Traveler.js';
 let traveler1;
 let allTrips1;
 let pastTrips1;
+let upcomingTrips1;
 
 describe('Traveler', () => {
 
@@ -69,7 +70,7 @@ describe('Traveler', () => {
         userID: 2,
         destinationID: 20,
         travelers: 6,
-        date: '2020/01/29',
+        date: '2021/01/29',
         duration: 8,
         status: 'approved',
         suggestedActivities: []
@@ -106,16 +107,6 @@ describe('Traveler', () => {
         duration: 6,
         status: 'approved',
         suggestedActivities: []
-      },
-      {
-        id: 177,
-        userID: 2,
-        destinationID: 20,
-        travelers: 6,
-        date: '2020/01/29',
-        duration: 8,
-        status: 'approved',
-        suggestedActivities: []
       }
     ];
 
@@ -134,7 +125,7 @@ describe('Traveler', () => {
   });
 
   it('should keep track of the current trip', () => {
-    expect(traveler1.currentTrip).to.deep.equal({});
+    expect(traveler1.currentTrip).to.deep.equal([]);
   });
 
   it('should keep track of upcoming trips', () => {
@@ -158,5 +149,20 @@ describe('Traveler', () => {
   it('should return the current trip of a traveler', () => {
     traveler1.getCurrentTrip(tripsData);
     expect(traveler1.currentTrip).to.deep.equal(allTrips1[0]);
+  });
+
+  it('should return future trips of a traveler', () => {
+    traveler1.getUpcomingTrips(tripsData);
+    expect(traveler1.upcomingTrips).to.deep.equal([allTrips1[5]]);
+  });
+
+  it('should not include a trip in upcomingTrips if the status is pending', () =>{
+    traveler1.getUpcomingTrips(tripsData);
+    expect(traveler1.upcomingTrips).to.not.include(allTrips1[4]);
+  });
+
+  it('should return all pending trips for a traveler', () => {
+    traveler1.getPendingTrips(tripsData);
+    expect(traveler1.pendingTrips).to.deep.equal([allTrips1[4]]);
   })
 })
