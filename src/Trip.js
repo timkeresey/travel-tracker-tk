@@ -9,6 +9,7 @@ class Trip {
     this.status = tripsData.status;
     this.suggestedActivities = [];
   }
+// calculate trip cost
 
 }
 

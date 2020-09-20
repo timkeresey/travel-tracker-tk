@@ -3,6 +3,7 @@ const expect = chai.expect;
 
 import travelersData from './travelers-dum.js';
 import tripsData from './trips-dum.js';
+import destinationsData from './destinations-dum.js';
 import Traveler from '../src/Traveler.js';
 
 let traveler1;
@@ -165,4 +166,10 @@ describe('Traveler', () => {
     traveler1.getPendingTrips(tripsData);
     expect(traveler1.pendingTrips).to.deep.equal([allTrips1[4]]);
   });
+
+  it('should return the total amount a traveler has spent over past year', () => {
+    traveler1.getPastTrips(tripsData);
+    traveler1.totalAmountSpent(tripsData, destinationsData);
+
+  })
 })
