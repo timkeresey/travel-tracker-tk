@@ -11,7 +11,12 @@ class Trip {
   }
 // calculate trip cost
   getCostPerTrip(destinationsData) {
-
+    let tripDestination = destinationsData.find(destination => {
+      return this.destinationID === destination.id;
+    });
+    let lodgingCost = tripDestination.estimatedLodgingCostPerDay * this.duration;
+    let flightCost = tripDestination.estimatedFlightCostPerPerson * this.travelers;
+    return lodgingCost + flightCost;
   }
 
 }

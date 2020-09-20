@@ -42,5 +42,10 @@ describe.only('Trip', () => {
 
   it('should have suggested activities with a default value of an empty array', () => {
     expect(trip1.suggestedActivities).to.deep.equal([]);
+  });
+
+  it('should determine the cost of a trip', () => {
+    let tripCost = trip1.getCostPerTrip(destinationsData);
+    expect(tripCost).to.be.equal(5290);
   })
 })
