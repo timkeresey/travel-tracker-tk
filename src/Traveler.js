@@ -11,7 +11,7 @@ class Traveler {
     this.id = traveler.id;
     this.name = traveler.name;
     this.pastTrips = [];
-    this.currentTrip = [];
+    this.currentTrip = {};
     this.upcomingTrips = [];
     this.pendingTrips = [];
   }
@@ -24,13 +24,19 @@ class Traveler {
 
   getPastTrips(tripsData) {
     let allTrips = this.getTravelerTrips(tripsData);
-    return allTrips.filter(trip => {
+    this.pastTrips = allTrips.filter(trip => {
       let durationDate = moment(new Date(trip.date)).add(trip.duration, 'day');
       return moment(durationDate).isBefore(moment());
     })
   }
 
-  
+  getCurrentTrip(tripsData) {
+    let allTrips = this.getTravelerTrips(tripsData);
+    this.currentTrip = allTrips.find(trip => {
+      let durationDate = moment(new Date(trip.date)).add(trip.duration, 'day');
+      return moment(new Date(trip.date)).isBefore(moment()) && moment(durationDate).isAfter(moment());
+    })
+  }
 }
 
 export default Traveler;

@@ -884,7 +884,7 @@ const tripsData = [
     "userID": 2,
     "destinationID": 10,
     "travelers": 5,
-    "date": "2019/09/27",
+    "date": "2020/09/17",
     "duration": 13,
     "status": "approved",
     "suggestedActivities": []
