@@ -51,6 +51,8 @@ class Traveler {
       return trip.status === 'pending';
     })
   }
+
+  j
 }
 
 export default Traveler;

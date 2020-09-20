@@ -164,5 +164,5 @@ describe('Traveler', () => {
   it('should return all pending trips for a traveler', () => {
     traveler1.getPendingTrips(tripsData);
     expect(traveler1.pendingTrips).to.deep.equal([allTrips1[4]]);
-  })
+  });
 })
