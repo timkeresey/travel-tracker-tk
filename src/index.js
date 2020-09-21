@@ -6,6 +6,45 @@ import './css/base.scss';
 
 // An example of how you tell webpack to use an image (also need to link to it in the index.html)
 import './images/turing-logo.png';
+import moment from 'moment';
+import fetchHandler from './fetchHandler.js';
+import Traveler from './Traveler.js';
+import Trip from './Trip.js';
+import Destination from './Destination.js';
+import domUpdates from './domUpdates.js';
+// console.log('This is the JavaScript entry file - your code begins here.');
+window.addEventListener('load', getData())
 
+let user;
+let allTravelers;
+let allTrips;
+let allDestinations;
 
-console.log('This is the JavaScript entry file - your code begins here.');
+function getData() {
+  let userData = fetchHandler.fetchSingleTraveler();
+  let travelersData = fetchHandler.fetchTravelersData();
+  let tripsData = fetchHandler.fetchTripsData();
+  let destinationsData = fetchHandler.fetchDestinationsData();
+  Promise.all([
+    userData,
+    travelersData,
+    tripsData,
+    destinationsData
+  ])
+  .then(data => {
+    // console.log('all this', data);
+    // user = new Traveler(data[0]);
+    // console.log(user);
+    allTravelers = data[1].map(traveler => {
+      return new Traveler(traveler); //maybe not necessary?
+    });
+    // console.log(allTravelers);
+    allTrips = data[2].map(trip => {
+      return new Trip(trip);
+    });
+    // console.log(allTrips);
+    allDestinations = data[3].map(destination => {
+      return new Destination(destination);
+    });
+  })
+}
