@@ -13,7 +13,7 @@ let pastTrips1;
 let upcomingTrips1;
 let trips;
 
-describe.only('Traveler', () => {
+describe('Traveler', () => {
 
   beforeEach(() => {
     traveler1 = new Traveler(travelersData[1]);
@@ -176,6 +176,6 @@ describe.only('Traveler', () => {
     traveler1.getPastTrips(trips);
     traveler1.getCurrentTrip(trips);
     let totalSpent = traveler1.totalAmountSpent(destinationsData);
-    expect(totalSpent).to.equal(12835)
+    expect(totalSpent).to.equal(14118.5)
   })
 })
