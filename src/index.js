@@ -15,6 +15,11 @@ import domUpdates from './domUpdates.js';
 // console.log('This is the JavaScript entry file - your code begins here.');
 window.addEventListener('load', getData())
 
+let user;
+let allTravelers;
+let allTrips;
+let allDestinations;
+
 function getData() {
   let userData = fetchHandler.fetchSingleTraveler();
   let travelersData = fetchHandler.fetchTravelersData();
@@ -27,6 +32,19 @@ function getData() {
     destinationsData
   ])
   .then(data => {
-    console.log('all this stuff', data);
+    // console.log('all this', data);
+    // user = new Traveler(data[0]);
+    // console.log(user);
+    allTravelers = data[1].map(traveler => {
+      return new Traveler(traveler); //maybe not necessary?
+    });
+    // console.log(allTravelers);
+    allTrips = data[2].map(trip => {
+      return new Trip(trip);
+    });
+    // console.log(allTrips);
+    allDestinations = data[3].map(destination => {
+      return new Destination(destination);
+    });
   })
 }
