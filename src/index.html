@@ -10,19 +10,27 @@
   <header>
     <h1>Welcome, ~User~</h1>
   </header>
+  <section>
+    <h3>Total Spent on Travel This Year:</h3>
+    <div class="total-spent">
+
+    </div>
+  </section>
   <section class="new-trip-section">
     <h3>New Trip</h3>
     <form class="new-trip-inputs" action="index.html" method="post">
       <label for="date">date</label>
-      <input type="text" value="">
+      <input type="date" name="date" value="">
       <label for="duration">how many days?</label>
-      <input type="text" value="">
+      <input type="number" name="duration" min="1" max="99">
       <label for="travelers">how many travelers?</label>
-      <input type="text" value="">
+      <input type="number" name="travelers" min="1" max="99">
       <label for="destination">where to?</label>
-      <select class="dropdown" name="destination">
-        <option value=""></option>
-        <option value="Denver">Denver</option>
+      <input list="destinations" name="destination">
+        <datalist id="destinations">
+          <option value="Denver">
+          <option value="Durango">  
+        </datalist>
       </select>
     </form>
   </section>
