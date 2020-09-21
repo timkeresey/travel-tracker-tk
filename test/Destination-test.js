@@ -6,7 +6,7 @@ import Destination from '../src/Destination.js';
 
 let destination1;
 
-describe.only('Destination', () => {
+describe('Destination', () => {
 
   beforeEach(() => {
     destination1 = new Destination(destinationsData[0]);

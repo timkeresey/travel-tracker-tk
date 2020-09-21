@@ -4,9 +4,6 @@ class Destination {
     this.estimatedLodgingCostPerDay = destinationsData.estimatedLodgingCostPerDay;
     this.estimatedFlightCostPerPerson = destinationsData.estimatedFlightCostPerPerson;
   }
-
-
-
 }
 
 

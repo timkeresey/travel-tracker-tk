@@ -57,11 +57,12 @@ class Traveler {
 
   totalAmountSpent(destinationsData) {
     let neededTrips = [this.pastTrips, this.currentTrip].flat();
-    return neededTrips.reduce((total, trip) => {
+    let totalCost = neededTrips.reduce((total, trip) => {
       if(trip.date.includes('2020')) {
         return total += trip.getCostPerTrip(destinationsData);
       }
     }, 0);
+    return totalCost + (totalCost * .1);
   }
 
 }

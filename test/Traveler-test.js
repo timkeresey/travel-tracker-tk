@@ -176,6 +176,6 @@ describe('Traveler', () => {
     traveler1.getPastTrips(trips);
     traveler1.getCurrentTrip(trips);
     let totalSpent = traveler1.totalAmountSpent(destinationsData);
-    expect(totalSpent).to.equal(12835)
+    expect(totalSpent).to.equal(14118.5)
   })
 })
