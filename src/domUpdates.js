@@ -55,14 +55,27 @@ const domUpdates = {
     if(user.upcomingTrips) {
       let cards = user.upcomingTrips.map(trip => {
         return this.constructCard(trip, destinationsData);
-      })
-      console.log(cards);
+      });
+      // console.log(cards);
       upcomingTripSection.innerHTML = cards;
     } else {
-      currentTripSection.innerText = 'Book a Trip!'
+      upcomingTripSection.innerText = 'Book a Trip!'
     }
-    console.log(user);
-  }
+  },
+
+  displayPendingTrips(user, tripsData, destinationsData) {
+    let pendingTripSection = document.querySelector('.pending');
+    user.getPendingTrips(tripsData);
+    if(user.pendingTrips) {
+      let cards = user.pendingTrips.map(trip => {
+        return this.constructCard(trip, destinationsData);
+      });
+      pendingTripSection.innerHTML = cards;
+    } else {
+      upcomingTripSection.innerText = 'Book a Trip!'
+    }
+  },
+  
 }
 
 export default domUpdates;

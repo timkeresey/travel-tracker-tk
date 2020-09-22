@@ -58,7 +58,7 @@ function getUserData(allTrips) {
   user.getPastTrips(allTrips);
   // user.getCurrentTrip(allTrips);
   // user.getUpcomingTrips(allTrips);
-  user.getPendingTrips(allTrips);
+  // user.getPendingTrips(allTrips);
 }
 
 
@@ -68,4 +68,5 @@ function userDisplay(user) {
   domUpdates.displayTotalSpent(user, allTrips, allDestinations);
   domUpdates.displayCurrentTrip(user, allTrips, allDestinations);
   domUpdates.displayUpcomingTrips(user, allTrips, allDestinations);
+  domUpdates.displayPendingTrips(user, allTrips, allDestinations);
 }
