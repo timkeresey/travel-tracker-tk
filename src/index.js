@@ -48,20 +48,17 @@ function getData() {
     });
     domUpdates.createData(user, allTravelers, allTrips, allDestinations);
   })
-  .then(() => getUserData(allTrips, allDestinations))
-  // .then(() => totalSpent(allDestinations))
+  // .then(() => getUserData(allTrips, allDestinations))
   .then(() => userDisplay(user))
 }
 
-function getUserData(allTrips) {
+// function getUserData(allTrips) {
   // user.getTravelerTrips(allTrips);
   // user.getPastTrips(allTrips);
   // user.getCurrentTrip(allTrips);
   // user.getUpcomingTrips(allTrips);
   // user.getPendingTrips(allTrips);
-}
-
-
+// }
 
 function userDisplay(user) {
   domUpdates.displayGreeting(user);
@@ -70,4 +67,5 @@ function userDisplay(user) {
   domUpdates.displayUpcomingTrips(user, allTrips, allDestinations);
   domUpdates.displayPendingTrips(user, allTrips, allDestinations);
   domUpdates.displayPastTrips(user, allTrips, allDestinations);
+  domUpdates.destinationDropdown(allDestinations);
 }

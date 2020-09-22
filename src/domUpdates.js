@@ -87,6 +87,15 @@ const domUpdates = {
     } else {
       upcomingTripSection.innerText = 'Book a Trip!'
     }
+  },
+
+// apendChild?
+  destinationDropdown(destinationsData) {
+    let selectDestination = document.querySelector('#destinations');
+    this.allDestinations.forEach(destination => {
+      let destinationOption = `<option id="${destination.id}" value="${destination.destination}">`;
+      selectDestination.insertAdjacentHTML('beforeend', destinationOption);
+    })
   }
 }
 
