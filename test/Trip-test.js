@@ -47,5 +47,10 @@ describe('Trip', () => {
   it('should determine the cost of a trip', () => {
     let tripCost = trip1.getCostPerTrip(destinationsData);
     expect(tripCost).to.be.equal(5290);
-  })
+  });
+
+  it('should return the destination for a particular trip', () => {
+    let tripDestination = trip1.getTripDestination(destinationsData);
+    expect(tripDestination).to.deep.equal(destinationsData[48])
+  });
 })
