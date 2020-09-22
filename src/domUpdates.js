@@ -1,3 +1,5 @@
+ import Trip from './Trip.js';
+
 const domUpdates = {
   user: null,
   allTravelers: null,
@@ -98,25 +100,8 @@ const domUpdates = {
     })
   },
 
-  createNewTrip(user, destinationsData) {
-    let dateInput = document.querySelector('.date-input');
-    let durationInput = document.querySelector('.duration-input');
-    let travelersInput = document.querySelector('.travelers-input');
-    let destinationInput = document.querySelector('.destination-input');
-    return new Trip({
-      id: Date.now(),
-      userId: user.id,
-      destinationID: destinationInput.value.id,
-      travelers: travelersInput.value,
-      date: dateInput.value,
-      duration: durationInput.value,
-      status: 'pending',
-      suggestedActivities: []
-    })
-  },
-
-  diplayNewTripCost() {
-    // add 10%
+  displayTripCost() {
+    
   }
 }
 

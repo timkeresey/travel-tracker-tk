@@ -5,7 +5,7 @@
 import './css/base.scss';
 
 // An example of how you tell webpack to use an image (also need to link to it in the index.html)
-import './images/turing-logo.png';
+// import './images/turing-logo.png';
 import moment from 'moment';
 import fetchHandler from './fetchHandler.js';
 import Traveler from './Traveler.js';
@@ -13,15 +13,21 @@ import Trip from './Trip.js';
 import Destination from './Destination.js';
 import domUpdates from './domUpdates.js';
 // console.log('This is the JavaScript entry file - your code begins here.');
+
+
 window.addEventListener('load', getData());
 
 let user;
 let allTravelers;
 let allTrips;
 let allDestinations;
+let newTripData;
+const submitButton = document.querySelector('.submit-button');
+
+submitButton.addEventListener('click', );
 
 function getData() {
-  let userData = fetchHandler.fetchSingleTraveler();
+  let userData = fetchHandler.fetchSingleTraveler(); //interpolate id into url
   let travelersData = fetchHandler.fetchTravelersData();
   let tripsData = fetchHandler.fetchTripsData();
   let destinationsData = fetchHandler.fetchDestinationsData();
@@ -70,9 +76,25 @@ function userDisplay(user) {
   domUpdates.destinationDropdown(allDestinations);
 }
 
-const submitButton = document.querySelector('.submit');
-// submitButton.addEventListener('click', postTrip());
 //run getData() after postTrip. If data gets duplicated, reset innerHTML (apend child maybe) to empty.
-function postTrip() {
-// if all inputs have a value
+function getNewTripData(user, allDestinations) {
+  let currentUserID = { userID: user.id };
+  let selectedDate = document.getElementByID('date-input');
+  newTripData = {
+    id: Date.now(),
+    userID: currentUserID.userID,
+    destinationID: +document.getElementByID('destination-input').value,
+    travelers: +document.getElementByID('travelers-input').value,
+    date: selectedDate.split('-').join('/'),
+    duration: +document.getElementByID('duration-input').value,
+    status: 'pending',
+    suggestedActivities: []
+  };
+  let newTrip = new Trip(newTripData);
+  let tripCost = newTrip.getCostPerTrip(allDestinations);
+  if (newTrip.travelers > 0 && newTrip.duration > 0 && newTrip.date !== '') {
+    domUpdates.displayTripCost();
+  } else {
+    alert('Information Needed');
+  }
 }
