@@ -33,7 +33,7 @@ function getData() {
   ])
   .then(data => {
     // console.log('all this', data);
-    // user = new Traveler(data[0]);
+    user = new Traveler(data[0]);
     // console.log(user);
     allTravelers = data[1].map(traveler => {
       return new Traveler(traveler); //maybe not necessary?
@@ -46,5 +46,28 @@ function getData() {
     allDestinations = data[3].map(destination => {
       return new Destination(destination);
     });
+    domUpdates.createData(user, allTravelers, allTrips, allDestinations);
   })
+  .then(() => getUserData(allTrips, allDestinations))
+  // .then(() => totalSpent(allDestinations))
+  .then(() => userDisplay(user))
+}
+
+function getUserData(allTrips) {
+  // user.getTravelerTrips(allTrips);
+  // user.getPastTrips(allTrips);
+  // user.getCurrentTrip(allTrips);
+  // user.getUpcomingTrips(allTrips);
+  // user.getPendingTrips(allTrips);
+}
+
+
+
+function userDisplay(user) {
+  domUpdates.displayGreeting(user);
+  domUpdates.displayTotalSpent(user, allTrips, allDestinations);
+  domUpdates.displayCurrentTrip(user, allTrips, allDestinations);
+  domUpdates.displayUpcomingTrips(user, allTrips, allDestinations);
+  domUpdates.displayPendingTrips(user, allTrips, allDestinations);
+  domUpdates.displayPastTrips(user, allTrips, allDestinations);
 }

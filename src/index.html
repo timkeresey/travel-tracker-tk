@@ -2,43 +2,61 @@
 <html lang="en-US">
 
 <head>
-  <title>Webpack Starter Kit</title>
+  <title>Travel Tracker</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 
 <body>
   <header>
-    <h1>Welcome, ~User~</h1>
+    <h1 class="greeting"></h1>
   </header>
+  <section>
+    <h3 class="total-spent">Total Spent on Travel This Year:</h3>
+    <div class="total-spent">
+
+    </div>
+  </section>
   <section class="new-trip-section">
     <h3>New Trip</h3>
     <form class="new-trip-inputs" action="index.html" method="post">
       <label for="date">date</label>
-      <input type="text" value="">
+      <input type="date" name="date" value="">
       <label for="duration">how many days?</label>
-      <input type="text" value="">
+      <input type="number" name="duration" min="1" max="99">
       <label for="travelers">how many travelers?</label>
-      <input type="text" value="">
+      <input type="number" name="travelers" min="1" max="99">
       <label for="destination">where to?</label>
-      <select class="dropdown" name="destination">
-        <option value=""></option>
-        <option value="Denver">Denver</option>
-      </select>
+      <input list="destinations" name="destination">
+      <datalist id="destinations">
+        <option value="Denver">
+        <option value="Durango">
+      </datalist>
+      <input type="submit">
     </form>
   </section>
   <section class="current-trip-section">
     <h2>Your Current Trip</h2>
-    <!-- cards -->
+    <div class="card-area current">
+
+    </div>
   </section>
   <section class="upcoming-trips-section">
     <h2>Your Upcoming Trips</h2>
-    <!-- cards -->
+    <div class="card-area upcoming">
+
+    </div>
   </section>
   <section class="pending-trips-section">
     <h2>Your Pending Trips</h2>
+    <div class="card-area pending">
+
+    </div>
   </section>
   <section class="past-trips-section">
     <h2>Your Past Trips</h2>
+    <div class="card-area past">
+
+    </div>
   </section>
 
   <!-- Do not include the index.js or main.bundle.js file here - it is done automatically by the webpack server -->

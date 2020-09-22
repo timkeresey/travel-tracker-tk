@@ -19,6 +19,11 @@ class Trip {
     return lodgingCost + flightCost;
   }
 
+  getTripDestination(destinationsData) {
+    return destinationsData.find(destination => {
+      return destination.id === this.destinationID;
+    })
+  }
 }
 
 

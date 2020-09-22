@@ -173,9 +173,7 @@ describe('Traveler', () => {
   });
 
   it('should return the total amount a traveler has spent over past year', () => {
-    traveler1.getPastTrips(trips);
-    traveler1.getCurrentTrip(trips);
-    let totalSpent = traveler1.totalAmountSpent(destinationsData);
+    let totalSpent = traveler1.totalAmountSpent(trips, destinationsData);
     expect(totalSpent).to.equal(14118.5)
   })
 })
