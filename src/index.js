@@ -49,7 +49,7 @@ function getData() {
     domUpdates.createData(user, allTravelers, allTrips, allDestinations);
   })
   .then(() => getUserData(allTrips, allDestinations))
-  .then(() => totalSpent(allDestinations))
+  // .then(() => totalSpent(allDestinations))
   .then(() => userDisplay(user))
 }
 
@@ -59,13 +59,13 @@ function getUserData(allTrips) {
   user.getCurrentTrip(allTrips);
   user.getUpcomingTrips(allTrips);
   user.getPendingTrips(allTrips);
-  // user.totalAmountSpent(allDestinations);
 }
 
-function totalSpent(allDestinations) {
-  user.totalAmountSpent(allDestinations)
-}
+// function totalSpent(allDestinations) {
+//   user.totalAmountSpent(allDestinations)
+// }
 
 function userDisplay(user) {
   domUpdates.displayGreeting(user);
+  domUpdates.displayTotalSpent(user, allTrips, allDestinations);
 }
