@@ -37,7 +37,6 @@ const domUpdates = {
 
   displayCurrentTrip(user, tripsData, destinationsData) {
     let currentTripSection = document.querySelector('.current');
-    // console.log(user);
     user.getCurrentTrip(tripsData);
     if(user.currentTrip) {
       user.currentTrip.forEach(trip => {
@@ -94,8 +93,30 @@ const domUpdates = {
     let selectDestination = document.querySelector('#destinations');
     this.allDestinations.forEach(destination => {
       let destinationOption = `<option id="${destination.id}" value="${destination.destination}">`;
+      // console.log(destinationOption);
       selectDestination.insertAdjacentHTML('beforeend', destinationOption);
     })
+  },
+
+  createNewTrip(user, destinationsData) {
+    let dateInput = document.querySelector('.date-input');
+    let durationInput = document.querySelector('.duration-input');
+    let travelersInput = document.querySelector('.travelers-input');
+    let destinationInput = document.querySelector('.destination-input');
+    return new Trip({
+      id: Date.now(),
+      userId: user.id,
+      destinationID: destinationInput.value.id,
+      travelers: travelersInput.value,
+      date: dateInput.value,
+      duration: durationInput.value,
+      status: 'pending',
+      suggestedActivities: []
+    })
+  },
+
+  diplayNewTripCost() {
+    // add 10%
   }
 }
 
