@@ -10,52 +10,56 @@
   <header>
     <h1 class="greeting"></h1>
   </header>
-  <section>
+  <section class="total-spent-section">
     <h3 class="total-spent">Total Spent on Travel This Year:</h3>
-    <div class="total-spent">
-
-    </div>
+    <p class="total-spent"></p>
   </section>
-  <section class="new-trip-section">
-    <h3>New Trip</h3>
-    <form class="new-trip-inputs" action="index.html" method="post">
-      <label for="date">date</label>
-      <input type="date" name="date" value="">
-      <label for="duration">how many days?</label>
-      <input type="number" name="duration" min="1" max="99">
-      <label for="travelers">how many travelers?</label>
-      <input type="number" name="travelers" min="1" max="99">
-      <label for="destination">where to?</label>
-      <input list="destinations" name="destination">
-      <datalist id="destinations">
-        <!-- <option id="destinationID" value="Denver"> -->
-      </datalist>
-      <input type="submit">
-    </form>
-  </section>
-  <section class="current-trip-section">
-    <h2>Your Current Trip</h2>
-    <div class="card-area current">
 
-    </div>
-  </section>
-  <section class="upcoming-trips-section">
-    <h2>Your Upcoming Trips</h2>
-    <div class="card-area upcoming">
+  <section class="main-section">
 
-    </div>
-  </section>
-  <section class="pending-trips-section">
-    <h2>Your Pending Trips</h2>
-    <div class="card-area pending">
+    <section class="new-trip-section">
+      <h3>New Trip</h3>
+      <form class="new-trip-bar" action="index.html" method="post">
+        <label for="date">date</label>
+        <input class="date-input" type="date" name="date" value="">
+        <label for="duration">how many days?</label>
+        <input class="duration-input" type="number" name="duration" min="1" max="99">
+        <label for="travelers">how many travelers?</label>
+        <input class="travelers-input" type="number" name="travelers" min="1" max="99">
+        <label for="destination">where to?</label>
+        <input class="destination-input" list="destinations" name="destination">
+        <datalist id="destinations"></datalist>
+        <button class="submit">Submit</button>
+      </form>
+      <section class="estimated-cost">
+        <!-- innerHTML -->
+      </section>
+    </section>
 
-    </div>
-  </section>
-  <section class="past-trips-section">
-    <h2>Your Past Trips</h2>
-    <div class="card-area past">
+    <section class="current-trip-section">
+      <h2>Your Current Trip</h2>
+      <div class="card-area current">
 
-    </div>
+      </div>
+    </section>
+    <section class="upcoming-trips-section">
+      <h2>Your Upcoming Trips</h2>
+      <div class="card-area upcoming">
+
+      </div>
+    </section>
+    <section class="pending-trips-section">
+      <h2>Your Pending Trips</h2>
+      <div class="card-area pending">
+
+      </div>
+    </section>
+    <section class="past-trips-section">
+      <h2>Your Past Trips</h2>
+      <div class="card-area past">
+
+      </div>
+    </section>
   </section>
 
   <!-- Do not include the index.js or main.bundle.js file here - it is done automatically by the webpack server -->

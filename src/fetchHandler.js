@@ -1,6 +1,6 @@
 let fetchHandler = {
   fetchSingleTraveler() {
-    return fetch('https://fe-apps.herokuapp.com/api/v1/travel-tracker/data/travelers/travelers/3')
+    return fetch('https://fe-apps.herokuapp.com/api/v1/travel-tracker/data/travelers/travelers/15')
     .then(response => response.json())
     .then(data => data)
     .catch(error => console.log('error', error))
@@ -25,7 +25,11 @@ let fetchHandler = {
     .then(response => response.json())
     .then(data => data.destinations)
     .catch(error => console.log('error', error))
-  }
+  },
+
+  // fetchPostTrip() {
+  //
+  // }
 }
 
 export default fetchHandler;

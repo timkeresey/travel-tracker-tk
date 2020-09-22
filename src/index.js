@@ -13,7 +13,7 @@ import Trip from './Trip.js';
 import Destination from './Destination.js';
 import domUpdates from './domUpdates.js';
 // console.log('This is the JavaScript entry file - your code begins here.');
-window.addEventListener('load', getData())
+window.addEventListener('load', getData());
 
 let user;
 let allTravelers;
@@ -68,4 +68,11 @@ function userDisplay(user) {
   domUpdates.displayPendingTrips(user, allTrips, allDestinations);
   domUpdates.displayPastTrips(user, allTrips, allDestinations);
   domUpdates.destinationDropdown(allDestinations);
+}
+
+const submitButton = document.querySelector('.submit');
+// submitButton.addEventListener('click', postTrip());
+//run getData() after postTrip. If data gets duplicated, reset innerHTML (apend child maybe) to empty.
+function postTrip() {
+// if all inputs have a value
 }
