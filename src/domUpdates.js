@@ -75,7 +75,19 @@ const domUpdates = {
       upcomingTripSection.innerText = 'Book a Trip!'
     }
   },
-  
+
+  displayPastTrips(user, tripsData, destinationsData) {
+    let pastTripSection = document.querySelector('.past');
+    user.getPastTrips(tripsData);
+    if(user.pastTrips) {
+      let cards = user.pastTrips.map(trip => {
+        return this.constructCard(trip, destinationsData);
+      });
+      pastTripSection.innerHTML = cards;
+    } else {
+      upcomingTripSection.innerText = 'Book a Trip!'
+    }
+  }
 }
 
 export default domUpdates;
