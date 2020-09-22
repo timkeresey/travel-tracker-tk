@@ -22,9 +22,9 @@ let allTravelers;
 let allTrips;
 let allDestinations;
 let newTripData;
-const submitButton = document.querySelector('.submit-button');
 
-submitButton.addEventListener('click', );
+const submitButton = document.querySelector('.submit-button');
+submitButton.addEventListener('click', submitTrip);
 
 function getData() {
   let userData = fetchHandler.fetchSingleTraveler(); //interpolate id into url
@@ -79,22 +79,30 @@ function userDisplay(user) {
 //run getData() after postTrip. If data gets duplicated, reset innerHTML (apend child maybe) to empty.
 function getNewTripData(user, allDestinations) {
   let currentUserID = { userID: user.id };
-  let selectedDate = document.getElementByID('date-input');
+  let day = document.querySelector('#date-input');
+  let selectedDate = moment.utc((new Date(day))).format('YYYY/MM/DD');
   newTripData = {
     id: Date.now(),
     userID: currentUserID.userID,
-    destinationID: +document.getElementByID('destination-input').value,
-    travelers: +document.getElementByID('travelers-input').value,
-    date: selectedDate.split('-').join('/'),
-    duration: +document.getElementByID('duration-input').value,
+    destinationID: +document.querySelector('#destination-input').value,
+    travelers: +document.querySelector('#travelers-input').value,
+    date: selectedDate,
+    duration: +document.querySelector('#duration-input').value,
     status: 'pending',
     suggestedActivities: []
   };
   let newTrip = new Trip(newTripData);
   let tripCost = newTrip.getCostPerTrip(allDestinations);
+  let tripCostPlus = tripCost + (tripCost * .1);
   if (newTrip.travelers > 0 && newTrip.duration > 0 && newTrip.date !== '') {
-    domUpdates.displayTripCost();
+    domUpdates.displayTripCost(tripCostPlus);
   } else {
     alert('Information Needed');
   }
+}
+
+function submitTrip() {
+  getNewTripData(user, allDestinations);
+  fetchHandler.fetchPostTrip(newTripData);
+  getData();
 }

@@ -1,4 +1,4 @@
- import Trip from './Trip.js';
+
 
 const domUpdates = {
   user: null,
@@ -100,8 +100,9 @@ const domUpdates = {
     })
   },
 
-  displayTripCost() {
-    
+  displayTripCost(tripCost) {
+    let costDisplaySection = document.querySelector('.estimated-cost');
+    costDisplaySection.innerText = `This trip should cost about $${tripCost} after a 10% agent fee.`;
   }
 }
 
