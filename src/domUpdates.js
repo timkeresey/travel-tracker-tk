@@ -16,18 +16,21 @@ const domUpdates = {
   displayGreeting(user) {
     let firstName = user.name.split(' ');
     let greeting = document.querySelector('.greeting');
-    greeting.innerText = `Hello, ${firstName[0]}`;
+    greeting.innerText = `HELLO, ${firstName[0]}`;
   },
 
   constructCard(trip, destinationsData) {
     let dest = trip.getTripDestination(destinationsData);
     return `<section class="card">
       <header>
-        <img src="${dest.image}" alt="${dest.alt}">
+        <img class="photo" src="${dest.image}" alt="${dest.alt}">
       </header>
-      <p>Destination: ${dest.destination}</p>
-      <p>Date: ${trip.date}</p>
-      <p>Duration: ${trip.duration}</p>
+      <article class="card-text">
+        <p>Destination: ${dest.destination}</p>
+        <p>Date: ${trip.date}</p>
+        <p>Duration: ${trip.duration} days</p>
+        <p>Amount of Travelers: ${trip.travelers}</p>
+      </article>
     </section>`
   },
 
@@ -46,7 +49,9 @@ const domUpdates = {
         currentTripSection.innerHTML = card;
       });
     } else {
-      currentTripSection.innerText = 'Book a Trip!'
+      currentTripSection.innerHTML = `<section class="book-msg">
+        <h2>BOOK A TRIP!<h2>
+      </section>`
     }
   },
 
@@ -60,7 +65,9 @@ const domUpdates = {
       // console.log(cards);
       upcomingTripSection.innerHTML = cards;
     } else {
-      upcomingTripSection.innerText = 'Book a Trip!'
+      upcomingTripSection.innerHTML = `<section class="book-msg">
+        <h2>BOOK A TRIP!<h2>
+      </section>`
     }
   },
 
@@ -73,7 +80,9 @@ const domUpdates = {
       });
       pendingTripSection.innerHTML = cards;
     } else {
-      upcomingTripSection.innerText = 'Book a Trip!'
+      pendingTripSection.innerHTML = `<section class="book-msg">
+        <h2>BOOK A TRIP!<h2>
+      </section>`
     }
   },
 
@@ -86,11 +95,12 @@ const domUpdates = {
       });
       pastTripSection.innerHTML = cards;
     } else {
-      upcomingTripSection.innerText = 'Book a Trip!'
+      pastTripSection.innerHTML = `<section class="book-msg">
+        <h2>NO PAST TRIPS<h2>
+      </section>`
     }
   },
 
-// apendChild?
   destinationDropdown(destinationsData) {
     let selectDestination = document.querySelector('#destinations');
     this.allDestinations.forEach(destination => {
@@ -98,12 +108,12 @@ const domUpdates = {
       // console.log(destinationOption);
       selectDestination.insertAdjacentHTML('beforeend', destinationOption);
     })
-  },
-
-  displayTripCost(tripCost) {
-    let costDisplaySection = document.querySelector('.estimated-cost');
-    costDisplaySection.innerText = `This trip should cost about $${tripCost} after a 10% agent fee.`;
   }
+
+  // displayTripCost(tripCost) {
+  //   let costDisplaySection = document.querySelector('.estimated-cost');
+  //   costDisplaySection.innerText = `This trip should cost about $${tripCost} after a 10% agent fee.`;
+  // }
 }
 
 export default domUpdates;
