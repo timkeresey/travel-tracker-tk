@@ -3,12 +3,15 @@
 
 <head>
   <title>Travel Tracker</title>
-   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://fonts.googleapis.com/css?family=Crimson+Text|Unica+One" rel="stylesheet">
 </head>
 
 <body>
   <header class="header">
     <h1 class="greeting"></h1>
+    <h2 class="app-name">Travel Tracker</h2>
   </header>
   <section class="total-spent-section">
     <p class="total-spent">Total Spent on Travel This Year:</p>
@@ -18,44 +21,55 @@
   <section class="main-section">
 
     <section class="new-trip-section">
-      <h2>New Trip</h2>
+      <h2> BOOK A NEW TRIP</h2>
       <form class="new-trip-bar" action="index.html" method="post">
-        <label for="date">date</label>
-        <input aria-label="input-date-of-trip" id="date-input" type="date" name="date-input">
-        <label for="duration">how many days?</label>
-        <input aria-label="input-length-of-trip" id="duration-input" type="number" name="duration" min="1" max="99">
-        <label for="travelers">how many travelers?</label>
-        <input aria-label="input-amount-of-travelers" id="travelers-input" type="number" name="travelers" min="1" max="99">
-        <label for="destination">where to?</label>
-        <input aria-label="input-where-you-want-to-go" id="destination-input" list="destinations" name="destination">
-        <datalist id="destinations"></datalist>
+        <div class="input-container">
+          <label for="date">date</label>
+          <input aria-label="input-date-of-trip" id="date-input" type="date" name="date-input">
+        </div>
+        <div class="input-container">
+          <label for="duration">how many days?</label>
+          <input aria-label="input-length-of-trip" id="duration-input" type="number" name="duration" min="1" max="99">
+        </div>
+        <div class="input-container">
+          <label for="travelers">how many travelers?</label>
+          <input aria-label="input-amount-of-travelers" id="travelers-input" type="number" name="travelers" min="1" max="99">
+        </div>
+        <div class="input-container">
+          <label for="destination">where to?</label>
+          <input aria-label="input-where-you-want-to-go" id="destination-input" list="destinations" name="destination">
+          <datalist id="destinations"></datalist>
+        </div>
       </form>
-      <button class="submit-button">Submit</button>
-      <section class="estimated-cost-section">
-        <p class="estimated-cost"></p>
-      </section>
+      <div class="buttons">
+        <section class="estimated-cost-section">
+          <button aria-label="estimate-cost" class="estimate-cost">Estimate Cost of Trip</button>
+          <p class="estimated-cost"></p>
+        </section>
+        <button aria-label="submit-button" class="submit-button">Submit Trip</button>
+      </div>
     </section>
 
     <section class="current-trip-section trip-area">
-      <h2>Your Current Trip</h2>
+      <h2 class="sec-title">YOUR CURRENT TRIP</h2>
       <div class="card-area current">
 
       </div>
     </section>
     <section class="upcoming-trips-section trip-area">
-      <h2>Your Upcoming Trips</h2>
+      <h2 class="sec-title">YOUR UPCOMING TRIPS</h2>
       <div class="card-area upcoming">
 
       </div>
     </section>
     <section class="pending-trips-section trip-area">
-      <h2>Your Pending Trips</h2>
+      <h2 class="sec-title">YOUR PENDING TRIPS</h2>
       <div class="card-area pending">
 
       </div>
     </section>
     <section class="past-trips-section trip-area">
-      <h2>Your Past Trips</h2>
+      <h2 class="sec-title">YOUR PAST TRIPS</h2>
       <div class="card-area past">
 
       </div>

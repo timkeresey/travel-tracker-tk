@@ -1,1 +1,10 @@
+@mixin common-margin($left, $right) {
+  margin-left: $left;
+  margin-right: $right;
+}
 
+@mixin card-display($display, $flex, $justify) {
+  display: $display;
+  flex-wrap: $flex;
+  justify-content: $justify;
+}
