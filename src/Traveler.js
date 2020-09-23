@@ -54,12 +54,10 @@ class Traveler {
     let allTrips = this.getTravelerTrips(tripsData);
     let totalCost = allTrips.reduce((total, trip) => {
       if(moment(new Date(trip.date)).isBefore(moment()) && trip.date.includes('2020')) {
-        // console.log(trip.getCostPerTrip(destinationsData));
         total += trip.getCostPerTrip(destinationsData);
       }
       return total;
     }, 0);
-    // console.log(totalCost);
     return totalCost + (totalCost * .1);
   }
 
