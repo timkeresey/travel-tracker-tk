@@ -69,7 +69,7 @@ h2 {
 
 .card { //nesting
   background: rgba(21, 193, 223, 0.62);
-  flex: 0 1 150px;
+  flex: 0 1 200px;
   margin: 15px;
   display: flex;
   flex-direction: column;
@@ -82,6 +82,6 @@ h2 {
 }
 
 .photo {
-  max-width: 150px;
+  max-width: 200px;
   max-height: inherit;
 }

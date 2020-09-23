@@ -31,6 +31,11 @@ submitButton.addEventListener('click', function() {
   getData();
 });
 
+const estimateCostBtn = document.querySelector('.estimate-cost');
+estimateCostBtn.addEventListener('click', function() {
+  calculateCost(user, allDestinations);
+})
+
 function getData() {
   let userData = fetchHandler.fetchSingleTraveler(); //interpolate id into url
   let travelersData = fetchHandler.fetchTravelersData();
@@ -87,12 +92,10 @@ function getNewTripData(user, allDestinations) {
   let currentUserID = { userID: user.id };
   let day = document.querySelector('#date-input').value;
   let selectedDate = moment.utc((new Date(day))).format('YYYY/MM/DD');
-  // let dest = +document.querySelector('#destination-input').id
   newTripData = {
     id: Date.now(),
     userID: currentUserID.userID,
     destinationID: captureDestinationID,
-    // +document.querySelector('#destination-input').value,
     travelers: +document.querySelector('#travelers-input').value,
     date: selectedDate,
     duration: +document.querySelector('#duration-input').value,
@@ -108,6 +111,15 @@ function captureDestinationID(allDestinations) {
   });
   captureDestinationID = locationValue.id;
 }
+
+function calculateCost(user, allDestinations) {
+  let costMsg = document.querySelector('.estimated-cost');
+  getNewTripData(user, allDestinations);
+  let potentialTrip = new Trip(newTripData);
+  let estCost = potentialTrip.getCostPerTrip(allDestinations);
+  let estCostPlus = estCost + (estCost * .1);
+  costMsg.innerText = `This trip should cost $${estCostPlus} including a 10% agent fee.`
+}
   // let newTrip = new Trip(newTripData);
   // let tripCost = newTrip.getCostPerTrip(allDestinations);
   // console.log(tripCost);
@@ -117,9 +129,3 @@ function captureDestinationID(allDestinations) {
   // } else {
   //   alert('Information Needed');
   // }
-
-// function submitTrip() {
-//   getNewTripData(user, allDestinations);
-//   fetchHandler.fetchPostTrip(newTripData);
-//   getData();
-// }

@@ -29,6 +29,7 @@ const domUpdates = {
         <p>Destination: ${dest.destination}</p>
         <p>Date: ${trip.date}</p>
         <p>Duration: ${trip.duration} days</p>
+        <p>Amount of Travelers: ${trip.travelers}</p>
       </article>
     </section>`
   },
@@ -92,7 +93,6 @@ const domUpdates = {
     }
   },
 
-// apendChild?
   destinationDropdown(destinationsData) {
     let selectDestination = document.querySelector('#destinations');
     this.allDestinations.forEach(destination => {
@@ -100,12 +100,12 @@ const domUpdates = {
       // console.log(destinationOption);
       selectDestination.insertAdjacentHTML('beforeend', destinationOption);
     })
-  },
-
-  displayTripCost(tripCost) {
-    let costDisplaySection = document.querySelector('.estimated-cost');
-    costDisplaySection.innerText = `This trip should cost about $${tripCost} after a 10% agent fee.`;
   }
+
+  // displayTripCost(tripCost) {
+  //   let costDisplaySection = document.querySelector('.estimated-cost');
+  //   costDisplaySection.innerText = `This trip should cost about $${tripCost} after a 10% agent fee.`;
+  // }
 }
 
 export default domUpdates;
