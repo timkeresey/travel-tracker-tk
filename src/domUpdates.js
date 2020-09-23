@@ -41,7 +41,7 @@ const domUpdates = {
   displayCurrentTrip(user, tripsData, destinationsData) {
     let currentTripSection = document.querySelector('.current');
     user.getCurrentTrip(tripsData);
-    if(user.currentTrip) {
+    if (user.currentTrip) {
       user.currentTrip.forEach(trip => {
         let card = this.constructCard(trip, destinationsData);
         currentTripSection.innerHTML = card;
@@ -56,7 +56,7 @@ const domUpdates = {
   displayUpcomingTrips(user, tripsData, destinationsData) {
     let upcomingTripSection = document.querySelector('.upcoming');
     user.getUpcomingTrips(tripsData);
-    if(user.upcomingTrips.length === 0) {
+    if (user.upcomingTrips.length === 0) {
       upcomingTripSection.innerHTML = `<section class="book-msg">
         <h2>NO TRIPS<h2>
       </section>`
@@ -71,7 +71,7 @@ const domUpdates = {
   displayPendingTrips(user, tripsData, destinationsData) {
     let pendingTripSection = document.querySelector('.pending');
     user.getPendingTrips(tripsData);
-    if(user.pendingTrips.length === 0) {
+    if (user.pendingTrips.length === 0) {
       pendingTripSection.innerHTML = `<section class="book-msg">
         <h2>NO TRIPS<h2>
       </section>`
@@ -86,7 +86,7 @@ const domUpdates = {
   displayPastTrips(user, tripsData, destinationsData) {
     let pastTripSection = document.querySelector('.past');
     user.getPastTrips(tripsData);
-    if(user.pastTrips.length === 0) {
+    if (user.pastTrips.length === 0) {
       pastTripSection.innerHTML = `<section class="book-msg">
         <h2>NO PAST TRIPS<h2>
       </section>`
@@ -98,7 +98,7 @@ const domUpdates = {
     }
   },
 
-  destinationDropdown(destinationsData) {
+  destinationDropdown() {
     let selectDestination = document.querySelector('#destinations');
     this.allDestinations.forEach(destination => {
       let destinationOption = `<option id="${destination.id}">${destination.destination}</option>`;

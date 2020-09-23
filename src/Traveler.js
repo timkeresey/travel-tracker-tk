@@ -1,7 +1,4 @@
 import moment from 'moment';
-import tripsData from '../test/travelers-dum.js';
-import destinationsData from '../test/destinations-dum.js';
-import Trip from './Trip.js';
 
 class Traveler {
   constructor(traveler) {
@@ -53,7 +50,7 @@ class Traveler {
   totalAmountSpent(tripsData, destinationsData) {
     let allTrips = this.getTravelerTrips(tripsData);
     let totalCost = allTrips.reduce((total, trip) => {
-      if(moment(new Date(trip.date)).isBefore(moment()) && trip.date.includes('2020')) {
+      if (moment(new Date(trip.date)).isBefore(moment()) && trip.date.includes('2020')) {
         total += trip.getCostPerTrip(destinationsData);
       }
       return total;

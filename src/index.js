@@ -21,7 +21,7 @@ loginBtn.addEventListener('click', loadUserDashboard);
 const submitButton = document.querySelector('.submit-button');
 submitButton.addEventListener('click', function() {
   getDestinationID(allDestinations);
-  getNewTripData(user, allDestinations);
+  getNewTripData(user);
   promisePost();
 });
 
@@ -41,7 +41,7 @@ function promisePost() {
   };
   let requestedTrip = fetchHandler.fetchPostTrip(init);
   Promise.all([requestedTrip])
-  .then(() => getData(loginID));
+    .then(() => getData(loginID));
 }
 
 function getData(loginID) {
@@ -55,20 +55,20 @@ function getData(loginID) {
     tripsData,
     destinationsData
   ])
-  .then(data => {
-    user = new Traveler(data[0]);
-    allTravelers = data[1].map(traveler => {
-      return new Traveler(traveler);
-    });
-    allTrips = data[2].map(trip => {
-      return new Trip(trip);
-    });
-    allDestinations = data[3].map(destination => {
-      return new Destination(destination);
-    });
-    domUpdates.createData(user, allTravelers, allTrips, allDestinations);
-  })
-  .then(() => userDisplay(user))
+    .then(data => {
+      user = new Traveler(data[0]);
+      allTravelers = data[1].map(traveler => {
+        return new Traveler(traveler);
+      });
+      allTrips = data[2].map(trip => {
+        return new Trip(trip);
+      });
+      allDestinations = data[3].map(destination => {
+        return new Destination(destination);
+      });
+      domUpdates.createData(user, allTravelers, allTrips, allDestinations);
+    })
+    .then(() => userDisplay(user))
 }
 
 function userDisplay(user) {
@@ -78,7 +78,7 @@ function userDisplay(user) {
   domUpdates.displayUpcomingTrips(user, allTrips, allDestinations);
   domUpdates.displayPendingTrips(user, allTrips, allDestinations);
   domUpdates.displayPastTrips(user, allTrips, allDestinations);
-  domUpdates.destinationDropdown(allDestinations);
+  domUpdates.destinationDropdown();
 }
 
 function getDestinationID(allDestinations) {
@@ -89,7 +89,7 @@ function getDestinationID(allDestinations) {
   capturedDestinationID = locationValue.id;
 }
 
-function getNewTripData(user, allDestinations) {
+function getNewTripData(user) {
   let currentUserID = { userID: user.id };
   let day = document.querySelector('#date-input').value;
   let selectedDate = moment.utc((new Date(day))).format('YYYY/MM/DD');
