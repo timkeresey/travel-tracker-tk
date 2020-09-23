@@ -33,7 +33,6 @@ let fetchHandler = {
     return fetch('https://fe-apps.herokuapp.com/api/v1/travel-tracker/data/trips/trips', init)
     .then(response => response.json())
     .then(data => data)
-    // .then(() => {getData(newTripData.userID)})
     .catch(error => console.log('bad', error))
   }
 }

@@ -148,6 +148,7 @@ function loadUserDashboard() {
   let password = document.querySelector('#password').value;
   let main = document.querySelector('.main-section');
   let login = document.querySelector('.login-section');
+  let greeting = document.querySelector('.greeting')
   let reg = /\d+/g;
   loginID = +username.match(reg);
   // console.log(loginID);
@@ -155,6 +156,7 @@ function loadUserDashboard() {
     getData(loginID);
     main.classList.toggle('hidden');
     login.classList.toggle('hidden');
+    greeting.classList.toggle('hidden');
   } else {
     alert('access DENIED')
   }
