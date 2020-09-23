@@ -1,6 +1,6 @@
 let fetchHandler = {
   fetchSingleTraveler() {
-    return fetch('https://fe-apps.herokuapp.com/api/v1/travel-tracker/data/travelers/travelers/1')
+    return fetch('https://fe-apps.herokuapp.com/api/v1/travel-tracker/data/travelers/travelers/15') // interpolate id
     .then(response => response.json())
     .then(data => data)
     .catch(error => console.log('error', error))
@@ -25,6 +25,19 @@ let fetchHandler = {
     .then(response => response.json())
     .then(data => data.destinations)
     .catch(error => console.log('error', error))
+  },
+
+  fetchPostTrip(newTripData) {
+    return fetch('https://fe-apps.herokuapp.com/api/v1/travel-tracker/data/trips/trips', {
+      method: 'POST',
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(newTripData)
+    })
+    .then(response => response.json())
+    .then(data => console.log('good', data, newTripData))
+    .catch(error => console.log('bad', error))
   }
 }
 

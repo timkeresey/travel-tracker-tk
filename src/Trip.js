@@ -9,11 +9,11 @@ class Trip {
     this.status = tripsData.status;
     this.suggestedActivities = [];
   }
-// calculate trip cost
   getCostPerTrip(destinationsData) {
     let tripDestination = destinationsData.find(destination => {
       return this.destinationID === destination.id;
     });
+    // console.log(tripDestination);
     let lodgingCost = tripDestination.estimatedLodgingCostPerDay * this.duration;
     let flightCost = tripDestination.estimatedFlightCostPerPerson * this.travelers;
     return lodgingCost + flightCost;

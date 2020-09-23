@@ -1,3 +1,5 @@
+
+
 const domUpdates = {
   user: null,
   allTravelers: null,
@@ -37,7 +39,6 @@ const domUpdates = {
 
   displayCurrentTrip(user, tripsData, destinationsData) {
     let currentTripSection = document.querySelector('.current');
-    // console.log(user);
     user.getCurrentTrip(tripsData);
     if(user.currentTrip) {
       user.currentTrip.forEach(trip => {
@@ -87,6 +88,21 @@ const domUpdates = {
     } else {
       upcomingTripSection.innerText = 'Book a Trip!'
     }
+  },
+
+// apendChild?
+  destinationDropdown(destinationsData) {
+    let selectDestination = document.querySelector('#destinations');
+    this.allDestinations.forEach(destination => {
+      let destinationOption = `<option id="${destination.id}">${destination.destination}</option>`;
+      // console.log(destinationOption);
+      selectDestination.insertAdjacentHTML('beforeend', destinationOption);
+    })
+  },
+
+  displayTripCost(tripCost) {
+    let costDisplaySection = document.querySelector('.estimated-cost');
+    costDisplaySection.innerText = `This trip should cost about $${tripCost} after a 10% agent fee.`;
   }
 }
 
