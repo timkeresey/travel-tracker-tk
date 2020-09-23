@@ -16,7 +16,7 @@ const domUpdates = {
   displayGreeting(user) {
     let firstName = user.name.split(' ');
     let greeting = document.querySelector('.greeting');
-    greeting.innerText = `Hello, ${firstName[0]}`;
+    greeting.innerText = `HELLO, ${firstName[0]}`;
   },
 
   constructCard(trip, destinationsData) {
@@ -49,7 +49,9 @@ const domUpdates = {
         currentTripSection.innerHTML = card;
       });
     } else {
-      currentTripSection.innerText = 'Book a Trip!'
+      currentTripSection.innerHTML = `<section class="book-msg">
+        <h2>BOOK A TRIP!<h2>
+      </section>`
     }
   },
 
@@ -63,7 +65,9 @@ const domUpdates = {
       // console.log(cards);
       upcomingTripSection.innerHTML = cards;
     } else {
-      upcomingTripSection.innerText = 'Book a Trip!'
+      upcomingTripSection.innerHTML = `<section class="book-msg">
+        <h2>BOOK A TRIP!<h2>
+      </section>`
     }
   },
 
@@ -76,7 +80,9 @@ const domUpdates = {
       });
       pendingTripSection.innerHTML = cards;
     } else {
-      upcomingTripSection.innerText = 'Book a Trip!'
+      pendingTripSection.innerHTML = `<section class="book-msg">
+        <h2>BOOK A TRIP!<h2>
+      </section>`
     }
   },
 
@@ -89,7 +95,9 @@ const domUpdates = {
       });
       pastTripSection.innerHTML = cards;
     } else {
-      upcomingTripSection.innerText = 'Book a Trip!'
+      pastTripSection.innerHTML = `<section class="book-msg">
+        <h2>NO PAST TRIPS<h2>
+      </section>`
     }
   },
 

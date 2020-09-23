@@ -26,6 +26,7 @@ let capturedDesinationID;
 
 const submitButton = document.querySelector('.submit-button');
 submitButton.addEventListener('click', function() {
+  captureDestinationID(allDestinations);
   getNewTripData(user, allDestinations);
   fetchHandler.fetchPostTrip(newTripData);
   getData();
@@ -33,6 +34,7 @@ submitButton.addEventListener('click', function() {
 
 const estimateCostBtn = document.querySelector('.estimate-cost');
 estimateCostBtn.addEventListener('click', function() {
+  captureDestinationID(allDestinations);
   calculateCost(user, allDestinations);
 })
 
@@ -86,9 +88,17 @@ function userDisplay(user) {
   domUpdates.destinationDropdown(allDestinations);
 }
 
-//run getData() after postTrip. If data gets duplicated, reset innerHTML (apend child maybe) to empty.
+function captureDestinationID(allDestinations) {
+  let location = document.querySelector('#destination-input');
+  let locationValue = allDestinations.find(place => {
+    return place.destination === location.value;
+  });
+  captureDestinationID = locationValue.id;
+}
+
 function getNewTripData(user, allDestinations) {
-  captureDestinationID(allDestinations);
+  newTripData = null;
+  // captureDestinationID(allDestinations);
   let currentUserID = { userID: user.id };
   let day = document.querySelector('#date-input').value;
   let selectedDate = moment.utc((new Date(day))).format('YYYY/MM/DD');
@@ -104,21 +114,17 @@ function getNewTripData(user, allDestinations) {
   }
 }
 
-function captureDestinationID(allDestinations) {
-  let location = document.querySelector('#destination-input');
-  let locationValue = allDestinations.find(place => {
-    return place.destination === location.value;
-  });
-  captureDestinationID = locationValue.id;
-}
-
 function calculateCost(user, allDestinations) {
   let costMsg = document.querySelector('.estimated-cost');
   getNewTripData(user, allDestinations);
   let potentialTrip = new Trip(newTripData);
   let estCost = potentialTrip.getCostPerTrip(allDestinations);
   let estCostPlus = estCost + (estCost * .1);
+  if (potentialTrip.travelers > 0 && potentialTrip.duration > 0 && potentialTrip.date !== '') {
   costMsg.innerText = `This trip should cost $${estCostPlus} including a 10% agent fee.`
+  } else {
+  alert('More Information Needed');
+  }
 }
   // let newTrip = new Trip(newTripData);
   // let tripCost = newTrip.getCostPerTrip(allDestinations);
