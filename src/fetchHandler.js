@@ -2,7 +2,7 @@ import getData from './index.js';
 
 let fetchHandler = {
   fetchSingleTraveler(loginID) {
-    return fetch(`https://fe-apps.herokuapp.com/api/v1/travel-tracker/data/travelers/travelers/${loginID}`) // interpolate id
+    return fetch(`https://fe-apps.herokuapp.com/api/v1/travel-tracker/data/travelers/travelers/${loginID}`)
     .then(response => response.json())
     .then(data => data)
     .catch(error => console.log('error', error))
