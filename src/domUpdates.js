@@ -1,5 +1,3 @@
-
-
 const domUpdates = {
   user: null,
   allTravelers: null,
@@ -58,46 +56,45 @@ const domUpdates = {
   displayUpcomingTrips(user, tripsData, destinationsData) {
     let upcomingTripSection = document.querySelector('.upcoming');
     user.getUpcomingTrips(tripsData);
-    if(user.upcomingTrips) {
-      let cards = user.upcomingTrips.map(trip => {
-        return this.constructCard(trip, destinationsData);
-      });
-      // console.log(cards);
-      upcomingTripSection.innerHTML = cards;
-    } else {
+    if(user.upcomingTrips.length === 0) {
       upcomingTripSection.innerHTML = `<section class="book-msg">
         <h2>NO TRIPS<h2>
       </section>`
+    } else {
+      let cards = user.upcomingTrips.map(trip => {
+        return this.constructCard(trip, destinationsData);
+      });
+      upcomingTripSection.innerHTML = cards;
     }
   },
 
   displayPendingTrips(user, tripsData, destinationsData) {
     let pendingTripSection = document.querySelector('.pending');
     user.getPendingTrips(tripsData);
-    if(user.pendingTrips) {
+    if(user.pendingTrips.length === 0) {
+      pendingTripSection.innerHTML = `<section class="book-msg">
+        <h2>NO TRIPS<h2>
+      </section>`
+    } else {
       let cards = user.pendingTrips.map(trip => {
         return this.constructCard(trip, destinationsData);
       });
       pendingTripSection.innerHTML = cards;
-    } else {
-      pendingTripSection.innerHTML = `<section class="book-msg">
-        <h2>NO TRIPS<h2>
-      </section>`
     }
   },
 
   displayPastTrips(user, tripsData, destinationsData) {
     let pastTripSection = document.querySelector('.past');
     user.getPastTrips(tripsData);
-    if(user.pastTrips) {
+    if(user.pastTrips.length === 0) {
+      pastTripSection.innerHTML = `<section class="book-msg">
+        <h2>NO PAST TRIPS<h2>
+      </section>`
+    } else {
       let cards = user.pastTrips.map(trip => {
         return this.constructCard(trip, destinationsData);
       });
       pastTripSection.innerHTML = cards;
-    } else {
-      pastTripSection.innerHTML = `<section class="book-msg">
-        <h2>NO PAST TRIPS<h2>
-      </section>`
     }
   },
 
@@ -105,15 +102,9 @@ const domUpdates = {
     let selectDestination = document.querySelector('#destinations');
     this.allDestinations.forEach(destination => {
       let destinationOption = `<option id="${destination.id}">${destination.destination}</option>`;
-      // console.log(destinationOption);
       selectDestination.insertAdjacentHTML('beforeend', destinationOption);
     })
   }
-
-  // displayTripCost(tripCost) {
-  //   let costDisplaySection = document.querySelector('.estimated-cost');
-  //   costDisplaySection.innerText = `This trip should cost about $${tripCost} after a 10% agent fee.`;
-  // }
 }
 
 export default domUpdates;

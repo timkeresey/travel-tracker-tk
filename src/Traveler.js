@@ -3,11 +3,6 @@ import tripsData from '../test/travelers-dum.js';
 import destinationsData from '../test/destinations-dum.js';
 import Trip from './Trip.js';
 
-////date math
-// moment('2016-03-12 13:00:00').add(1, 'day').format('LLL')
-////"March 13, 2016 1:00 PM"
-
-
 class Traveler {
   constructor(traveler) {
     this.id = traveler.id;
