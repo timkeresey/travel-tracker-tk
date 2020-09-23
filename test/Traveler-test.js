@@ -10,7 +10,6 @@ import Trip from '../src/Trip.js';
 let traveler1;
 let allTrips1;
 let pastTrips1;
-let upcomingTrips1;
 let trips;
 
 describe('Traveler', () => {

@@ -7,8 +7,6 @@ import Trip from './Trip.js';
 import Destination from './Destination.js';
 import domUpdates from './domUpdates.js';
 
-// window.addEventListener('load', getData());
-
 let user;
 let allTravelers;
 let allTrips;
@@ -23,9 +21,8 @@ loginBtn.addEventListener('click', loadUserDashboard);
 const submitButton = document.querySelector('.submit-button');
 submitButton.addEventListener('click', function() {
   getDestinationID(allDestinations);
-  getNewTripData(user, allDestinations);
+  getNewTripData(user);
   promisePost();
-  // getData(loginID);
 });
 
 const estimateCostBtn = document.querySelector('.estimate-cost');
@@ -44,11 +41,11 @@ function promisePost() {
   };
   let requestedTrip = fetchHandler.fetchPostTrip(init);
   Promise.all([requestedTrip])
-  .then(() => getData(loginID));
+    .then(() => getData(loginID));
 }
 
 function getData(loginID) {
-  let userData = fetchHandler.fetchSingleTraveler(loginID); //interpolate id into url
+  let userData = fetchHandler.fetchSingleTraveler(loginID);
   let travelersData = fetchHandler.fetchTravelersData();
   let tripsData = fetchHandler.fetchTripsData();
   let destinationsData = fetchHandler.fetchDestinationsData();
@@ -58,34 +55,21 @@ function getData(loginID) {
     tripsData,
     destinationsData
   ])
-  .then(data => {
-    // console.log('all this', data);
-    user = new Traveler(data[0]);
-    // console.log(user);
-    allTravelers = data[1].map(traveler => {
-      return new Traveler(traveler); //maybe not necessary?
-    });
-    // console.log(allTravelers);
-    allTrips = data[2].map(trip => {
-      return new Trip(trip);
-    });
-    // console.log(allTrips);
-    allDestinations = data[3].map(destination => {
-      return new Destination(destination);
-    });
-    domUpdates.createData(user, allTravelers, allTrips, allDestinations);
-  })
-  // .then(() => getUserData(allTrips, allDestinations))
-  .then(() => userDisplay(user))
+    .then(data => {
+      user = new Traveler(data[0]);
+      allTravelers = data[1].map(traveler => {
+        return new Traveler(traveler);
+      });
+      allTrips = data[2].map(trip => {
+        return new Trip(trip);
+      });
+      allDestinations = data[3].map(destination => {
+        return new Destination(destination);
+      });
+      domUpdates.createData(user, allTravelers, allTrips, allDestinations);
+    })
+    .then(() => userDisplay(user))
 }
-
-// function getUserData(allTrips) {
-  // user.getTravelerTrips(allTrips);
-  // user.getPastTrips(allTrips);
-  // user.getCurrentTrip(allTrips);
-  // user.getUpcomingTrips(allTrips);
-  // user.getPendingTrips(allTrips);
-// }
 
 function userDisplay(user) {
   domUpdates.displayGreeting(user);
@@ -94,7 +78,7 @@ function userDisplay(user) {
   domUpdates.displayUpcomingTrips(user, allTrips, allDestinations);
   domUpdates.displayPendingTrips(user, allTrips, allDestinations);
   domUpdates.displayPastTrips(user, allTrips, allDestinations);
-  domUpdates.destinationDropdown(allDestinations);
+  domUpdates.destinationDropdown();
 }
 
 function getDestinationID(allDestinations) {
@@ -105,9 +89,7 @@ function getDestinationID(allDestinations) {
   capturedDestinationID = locationValue.id;
 }
 
-function getNewTripData(user, allDestinations) {
-  // newTripData = null;
-  // captureDestinationID(allDestinations);
+function getNewTripData(user) {
   let currentUserID = { userID: user.id };
   let day = document.querySelector('#date-input').value;
   let selectedDate = moment.utc((new Date(day))).format('YYYY/MM/DD');
@@ -136,35 +118,20 @@ function calculateCost(user, allDestinations) {
   }
 }
 
-// function getUserInfo() {
-//   let username = document.querySelector('#username').value;
-//   let password = document.querySelector('#password').value;
-//   let reg = /\d+/g;
-//   return +username.match(reg);
-// }
-
 function loadUserDashboard() {
   let username = document.querySelector('#username').value;
   let password = document.querySelector('#password').value;
   let main = document.querySelector('.main-section');
   let login = document.querySelector('.login-section');
+  let greeting = document.querySelector('.greeting')
   let reg = /\d+/g;
   loginID = +username.match(reg);
-  // console.log(loginID);
   if (username === `traveler${loginID}` && password === 'travel2020') {
     getData(loginID);
     main.classList.toggle('hidden');
     login.classList.toggle('hidden');
+    greeting.classList.toggle('hidden');
   } else {
     alert('access DENIED')
   }
 }
-  // let newTrip = new Trip(newTripData);
-  // let tripCost = newTrip.getCostPerTrip(allDestinations);
-  // console.log(tripCost);
-  // let tripCostPlus = tripCost + (tripCost * .1);
-  // if (newTrip.travelers > 0 && newTrip.duration > 0 && newTrip.date !== '') {
-  //   domUpdates.displayTripCost(tripCostPlus);
-  // } else {
-  //   alert('Information Needed');
-  // }
