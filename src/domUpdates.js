@@ -34,7 +34,7 @@ const domUpdates = {
 
   displayTotalSpent(user, tripsData, destinationsData) {
     let totalSpent = document.querySelector('.total-spent');
-    let amount = user.totalAmountSpent(tripsData, destinationsData);
+    let amount = user.totalAmountSpent(tripsData, destinationsData).toFixed(2);
     totalSpent.innerText = `Total Spent on Travel This Year: $${amount}`;
   },
 
