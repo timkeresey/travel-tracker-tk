@@ -85,10 +85,11 @@ function getNewTripData(user, allDestinations) {
   let currentUserID = { userID: user.id };
   let day = document.querySelector('#date-input').value;
   let selectedDate = moment.utc((new Date(day))).format('YYYY/MM/DD');
+  // let dest = +document.querySelector('#destination-input').id
   newTripData = {
     id: Date.now(),
     userID: currentUserID.userID,
-    destinationID: 1,
+    destinationID: 3,
     // +document.querySelector('#destination-input').value,
     travelers: +document.querySelector('#travelers-input').value,
     date: selectedDate,
