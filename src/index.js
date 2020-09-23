@@ -22,6 +22,7 @@ let allTravelers;
 let allTrips;
 let allDestinations;
 let newTripData;
+let capturedDesinationID;
 
 const submitButton = document.querySelector('.submit-button');
 submitButton.addEventListener('click', function() {
@@ -82,6 +83,7 @@ function userDisplay(user) {
 
 //run getData() after postTrip. If data gets duplicated, reset innerHTML (apend child maybe) to empty.
 function getNewTripData(user, allDestinations) {
+  captureDestinationID(allDestinations);
   let currentUserID = { userID: user.id };
   let day = document.querySelector('#date-input').value;
   let selectedDate = moment.utc((new Date(day))).format('YYYY/MM/DD');
@@ -89,7 +91,7 @@ function getNewTripData(user, allDestinations) {
   newTripData = {
     id: Date.now(),
     userID: currentUserID.userID,
-    destinationID: 3,
+    destinationID: captureDestinationID,
     // +document.querySelector('#destination-input').value,
     travelers: +document.querySelector('#travelers-input').value,
     date: selectedDate,
@@ -97,6 +99,15 @@ function getNewTripData(user, allDestinations) {
     status: 'pending',
     suggestedActivities: []
   }
+}
+
+function captureDestinationID(allDestinations) {
+  let location = document.querySelector('#destination-input');
+  let locationValue = allDestinations.find(place => {
+    return place.destination === location.value;
+  });
+  captureDestinationID = locationValue.id;
+}
   // let newTrip = new Trip(newTripData);
   // let tripCost = newTrip.getCostPerTrip(allDestinations);
   // console.log(tripCost);
@@ -106,7 +117,6 @@ function getNewTripData(user, allDestinations) {
   // } else {
   //   alert('Information Needed');
   // }
-}
 
 // function submitTrip() {
 //   getNewTripData(user, allDestinations);

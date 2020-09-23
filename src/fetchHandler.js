@@ -36,7 +36,7 @@ let fetchHandler = {
       body: JSON.stringify(newTripData)
     })
     .then(response => response.json())
-    .then(data => console.log('good', data, newTripData))
+    .then(data => console.log('good'))
     .catch(error => console.log('bad', error))
   }
 }
