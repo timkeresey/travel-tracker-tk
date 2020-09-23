@@ -24,7 +24,11 @@ let allDestinations;
 let newTripData;
 
 const submitButton = document.querySelector('.submit-button');
-submitButton.addEventListener('click', submitTrip);
+submitButton.addEventListener('click', function() {
+  getNewTripData(user, allDestinations);
+  fetchHandler.fetchPostTrip(newTripData);
+  getData();
+});
 
 function getData() {
   let userData = fetchHandler.fetchSingleTraveler(); //interpolate id into url
@@ -79,30 +83,32 @@ function userDisplay(user) {
 //run getData() after postTrip. If data gets duplicated, reset innerHTML (apend child maybe) to empty.
 function getNewTripData(user, allDestinations) {
   let currentUserID = { userID: user.id };
-  let day = document.querySelector('#date-input');
+  let day = document.querySelector('#date-input').value;
   let selectedDate = moment.utc((new Date(day))).format('YYYY/MM/DD');
   newTripData = {
     id: Date.now(),
     userID: currentUserID.userID,
-    destinationID: +document.querySelector('#destination-input').value,
+    destinationID: 1,
+    // +document.querySelector('#destination-input').value,
     travelers: +document.querySelector('#travelers-input').value,
     date: selectedDate,
     duration: +document.querySelector('#duration-input').value,
     status: 'pending',
     suggestedActivities: []
-  };
-  let newTrip = new Trip(newTripData);
-  let tripCost = newTrip.getCostPerTrip(allDestinations);
-  let tripCostPlus = tripCost + (tripCost * .1);
-  if (newTrip.travelers > 0 && newTrip.duration > 0 && newTrip.date !== '') {
-    domUpdates.displayTripCost(tripCostPlus);
-  } else {
-    alert('Information Needed');
   }
+  // let newTrip = new Trip(newTripData);
+  // let tripCost = newTrip.getCostPerTrip(allDestinations);
+  // console.log(tripCost);
+  // let tripCostPlus = tripCost + (tripCost * .1);
+  // if (newTrip.travelers > 0 && newTrip.duration > 0 && newTrip.date !== '') {
+  //   domUpdates.displayTripCost(tripCostPlus);
+  // } else {
+  //   alert('Information Needed');
+  // }
 }
 
-function submitTrip() {
-  getNewTripData(user, allDestinations);
-  fetchHandler.fetchPostTrip(newTripData);
-  getData();
-}
+// function submitTrip() {
+//   getNewTripData(user, allDestinations);
+//   fetchHandler.fetchPostTrip(newTripData);
+//   getData();
+// }

@@ -94,7 +94,7 @@ const domUpdates = {
   destinationDropdown(destinationsData) {
     let selectDestination = document.querySelector('#destinations');
     this.allDestinations.forEach(destination => {
-      let destinationOption = `<option id="${destination.id}" value="${destination.destination}">`;
+      let destinationOption = `<option id="${destination.id}">${destination.destination}</option>`;
       // console.log(destinationOption);
       selectDestination.insertAdjacentHTML('beforeend', destinationOption);
     })
