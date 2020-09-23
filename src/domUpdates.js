@@ -50,7 +50,7 @@ const domUpdates = {
       });
     } else {
       currentTripSection.innerHTML = `<section class="book-msg">
-        <h2>BOOK A TRIP!<h2>
+        <h2>NO TRIPS<h2>
       </section>`
     }
   },
@@ -66,7 +66,7 @@ const domUpdates = {
       upcomingTripSection.innerHTML = cards;
     } else {
       upcomingTripSection.innerHTML = `<section class="book-msg">
-        <h2>BOOK A TRIP!<h2>
+        <h2>NO TRIPS<h2>
       </section>`
     }
   },
@@ -81,7 +81,7 @@ const domUpdates = {
       pendingTripSection.innerHTML = cards;
     } else {
       pendingTripSection.innerHTML = `<section class="book-msg">
-        <h2>BOOK A TRIP!<h2>
+        <h2>NO TRIPS<h2>
       </section>`
     }
   },

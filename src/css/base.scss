@@ -134,15 +134,50 @@ h2 {
 .book-msg {
   flex: 0 1 185px;
   background: $secondary-background;
-  box-shadow: $drop-shadow;
+
 }
 
 .card-text {
-  margin: 10px;
+  padding: 10px;
   justify-content: space-around;
 }
 
 .photo {
   max-width: 200px;
   max-height: inherit;
+}
+
+.container {
+  background: $secondary-background;
+  margin: 15px;
+}
+
+.login-section {
+  display: grid;
+  place-items: center;
+}
+
+.login-box {
+  margin-top: 100px;
+  background: $secondary-background;
+  color: $txt-color1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: $drop-shadow;
+  h1 {
+    font-family: $header-font;
+  }
+  label {
+    font-family: $txt-font;
+  }
+}
+
+.login-button {
+  margin-bottom: 10px;
+}
+
+.hidden {
+  display: none;
 }

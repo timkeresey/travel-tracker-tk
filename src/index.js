@@ -1,45 +1,54 @@
-// This is the JavaScript entry file - your code begins here
-// Do not delete or rename this file ********
-
-// An example of how you tell webpack to use a CSS (SCSS) file
 import './css/base.scss';
 
-// An example of how you tell webpack to use an image (also need to link to it in the index.html)
-// import './images/turing-logo.png';
 import moment from 'moment';
 import fetchHandler from './fetchHandler.js';
 import Traveler from './Traveler.js';
 import Trip from './Trip.js';
 import Destination from './Destination.js';
 import domUpdates from './domUpdates.js';
-// console.log('This is the JavaScript entry file - your code begins here.');
 
-
-window.addEventListener('load', getData());
+// window.addEventListener('load', getData());
 
 let user;
 let allTravelers;
 let allTrips;
 let allDestinations;
 let newTripData;
-let capturedDesinationID;
+let capturedDestinationID;
+let loginID;
+
+const loginBtn = document.querySelector('.login-button');
+loginBtn.addEventListener('click', loadUserDashboard);
 
 const submitButton = document.querySelector('.submit-button');
 submitButton.addEventListener('click', function() {
-  captureDestinationID(allDestinations);
+  getDestinationID(allDestinations);
   getNewTripData(user, allDestinations);
-  fetchHandler.fetchPostTrip(newTripData);
-  getData();
+  promisePost();
+  // getData(loginID);
 });
 
 const estimateCostBtn = document.querySelector('.estimate-cost');
 estimateCostBtn.addEventListener('click', function() {
-  captureDestinationID(allDestinations);
+  getDestinationID(allDestinations);
   calculateCost(user, allDestinations);
 })
 
-function getData() {
-  let userData = fetchHandler.fetchSingleTraveler(); //interpolate id into url
+function promisePost() {
+  let init = {
+    method: 'POST',
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(newTripData)
+  };
+  let requestedTrip = fetchHandler.fetchPostTrip(init);
+  Promise.all([requestedTrip])
+  .then(() => getData(loginID));
+}
+
+function getData(loginID) {
+  let userData = fetchHandler.fetchSingleTraveler(loginID); //interpolate id into url
   let travelersData = fetchHandler.fetchTravelersData();
   let tripsData = fetchHandler.fetchTripsData();
   let destinationsData = fetchHandler.fetchDestinationsData();
@@ -88,16 +97,16 @@ function userDisplay(user) {
   domUpdates.destinationDropdown(allDestinations);
 }
 
-function captureDestinationID(allDestinations) {
+function getDestinationID(allDestinations) {
   let location = document.querySelector('#destination-input');
   let locationValue = allDestinations.find(place => {
     return place.destination === location.value;
   });
-  captureDestinationID = locationValue.id;
+  capturedDestinationID = locationValue.id;
 }
 
 function getNewTripData(user, allDestinations) {
-  newTripData = null;
+  // newTripData = null;
   // captureDestinationID(allDestinations);
   let currentUserID = { userID: user.id };
   let day = document.querySelector('#date-input').value;
@@ -105,7 +114,7 @@ function getNewTripData(user, allDestinations) {
   newTripData = {
     id: Date.now(),
     userID: currentUserID.userID,
-    destinationID: captureDestinationID,
+    destinationID: capturedDestinationID,
     travelers: +document.querySelector('#travelers-input').value,
     date: selectedDate,
     duration: +document.querySelector('#duration-input').value,
@@ -124,6 +133,30 @@ function calculateCost(user, allDestinations) {
   costMsg.innerText = `This trip should cost $${estCostPlus} including a 10% agent fee.`
   } else {
   alert('More Information Needed');
+  }
+}
+
+// function getUserInfo() {
+//   let username = document.querySelector('#username').value;
+//   let password = document.querySelector('#password').value;
+//   let reg = /\d+/g;
+//   return +username.match(reg);
+// }
+
+function loadUserDashboard() {
+  let username = document.querySelector('#username').value;
+  let password = document.querySelector('#password').value;
+  let main = document.querySelector('.main-section');
+  let login = document.querySelector('.login-section');
+  let reg = /\d+/g;
+  loginID = +username.match(reg);
+  // console.log(loginID);
+  if (username === `traveler${loginID}` && password === 'travel2020') {
+    getData(loginID);
+    main.classList.toggle('hidden');
+    login.classList.toggle('hidden');
+  } else {
+    alert('access DENIED')
   }
 }
   // let newTrip = new Trip(newTripData);
