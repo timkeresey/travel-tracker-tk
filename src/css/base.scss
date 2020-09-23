@@ -8,16 +8,16 @@ body {
 }
 
 h2 {
-  margin-left: 30px; //mixin
-  margin-right: 30px;
+  @include common-margin(30px, 30px,);
   font-family: $header-font;
   color: $txt-color1;
 }
 
 .total-spent-section {
   font-size: 20px;
-  margin-left: 30px;
-  margin-right: 30px;
+  @include common-margin(30px, 30px,);
+  // margin-left: 30px;
+  // margin-right: 30px;
   margin: 0px;
   display: flex;
   justify-content: center;
@@ -25,8 +25,7 @@ h2 {
 
 .new-trip-section {
   background-color: $secondary-background;
-  margin-left: 30px;
-  margin-right: 30px;
+  @include common-margin(30px, 30px,);
   box-shadow: $drop-shadow;
   form {
     display: flex;
@@ -106,30 +105,22 @@ h2 {
 }
 
 .current {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+  @include card-display(flex, wrap, center);
 }
 
 .upcoming {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+  @include card-display(flex, wrap, center);
 }
 
 .pending {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+  @include card-display(flex, wrap, center);
 }
 
 .past {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+  @include card-display(flex, wrap, center);
 }
 
-.card { //nesting
+.card {
   background: $secondary-background;
   color: $txt-color1;
   flex: 0 1 200px;
