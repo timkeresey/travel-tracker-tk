@@ -23,11 +23,13 @@ const domUpdates = {
     let dest = trip.getTripDestination(destinationsData);
     return `<section class="card">
       <header>
-        <img src="${dest.image}" alt="${dest.alt}">
+        <img class="photo" src="${dest.image}" alt="${dest.alt}">
       </header>
-      <p>Destination: ${dest.destination}</p>
-      <p>Date: ${trip.date}</p>
-      <p>Duration: ${trip.duration}</p>
+      <article class="card-text">
+        <p>Destination: ${dest.destination}</p>
+        <p>Date: ${trip.date}</p>
+        <p>Duration: ${trip.duration} days</p>
+      </article>
     </section>`
   },
 
